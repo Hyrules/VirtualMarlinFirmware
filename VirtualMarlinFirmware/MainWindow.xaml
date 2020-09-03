@@ -1,0 +1,14 @@
+﻿<Window x:Class="VirtualMarlinFirmware.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VirtualMarlinFirmware"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" ContentRendered="Window_ContentRendered">
+    <Grid>
+        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="23" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" KeyUp="TextBox_KeyUp"/>
+        <TextBox x:Name="tbTerminal" HorizontalAlignment="Left" Height="373" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
+
+    </Grid>
+</Window>
