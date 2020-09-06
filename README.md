@@ -1,4 +1,4 @@
-# VirtualRepRapFirmware
+# Virtual RepRap Firmware
 Requirement .Net Framework 4.7
 
 A virtual reprap firmware for testing serial connections.
