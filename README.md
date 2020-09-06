@@ -1,4 +1,4 @@
-# VirtualMarlinFirmware
+# VirtualRepRapFirmware
 Requirement .Net Framework 4.7
 
 A virtual marlin firmware for testing serial connections.
