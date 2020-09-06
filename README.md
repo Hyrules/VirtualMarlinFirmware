@@ -6,7 +6,7 @@ A virtual reprap firmware for testing serial connections.
 This is a virtual version of a reprap 3d printer. It will answer to some basic M commands :
 You will need to connect it to some COM Port devices like BigTreeTech TFT screens
 using a USB to TTL serial dongle. I created it to test my version of the TFT3.5 firmware 
-instead of always having to upload to a real 3D printer. The application does not serve a comm
+instead of always having to upload to a real 3D printer. The application does not serve a COM
 port by itself. It will only connect to one.
 
 - M105
