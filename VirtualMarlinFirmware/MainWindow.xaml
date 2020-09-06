@@ -1,14 +1,65 @@
-﻿<Window x:Class="VirtualMarlinFirmware.MainWindow"
+﻿<Window x:Class="VirtualRepRapFirmware.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:VirtualMarlinFirmware"
+        xmlns:local="clr-namespace:VirtualRepRapFirmware"
+        xmlns:vm="clr-namespace:VirtualRepRapFirmware.MainForm" 
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ContentRendered="Window_ContentRendered">
+        Title="Virtual Reprap Firmware" Height="450" Width="800" Icon="Resources/ic.png" >
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closing">
+            <behaviors:InvokeCommandAction Command="{Binding QuitCommand}"/>
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+    <Window.DataContext>
+        <vm:MainFormViewModel></vm:MainFormViewModel>
+    </Window.DataContext>
     <Grid>
-        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="23" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" KeyUp="TextBox_KeyUp"/>
-        <TextBox x:Name="tbTerminal" HorizontalAlignment="Left" Height="373" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" IsReadOnly="True" VerticalScrollBarVisibility="Visible"/>
+        <TextBox x:Name="tbCommand" HorizontalAlignment="Left" Height="23" Margin="10,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" >
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="KeyUp">
+                    <behaviors:InvokeCommandAction Command="{Binding SendCommand}" CommandParameter="{}"/>
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
+        </TextBox>
+        <TextBox x:Name="tbTerminal" HorizontalAlignment="Left" Height="331" Margin="10,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="774" IsReadOnly="True" VerticalScrollBarVisibility="Visible" Text="{Binding TerminalText}" TextChanged="tbTerminal_TextChanged"/>
+        <Menu HorizontalAlignment="Left" Height="19" VerticalAlignment="Top" Width="794" Margin="0,0,-0.154,0">
+            <MenuItem Header="File">
+                <MenuItem Header="Quit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Firmware">
+                <MenuItem Header="Load Firmware..." Command="{Binding LoadFirmwareCommand}"/>
+            </MenuItem>
+                      
+        </Menu>
+
+        <ToolBarTray Margin="0,19,-0.154,368.923">
+            <ToolBar HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="Auto" >
+                <ComboBox x:Name="ListPorts" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" ItemsSource="{Binding PortNames}" SelectedValue="{Binding SelectedPort}">
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger EventName="SelectionChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding ChoosePortCommand}"/>
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                </ComboBox>
+                <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" ItemsSource="{Binding BaudRates}" SelectedValue="{Binding SelectedBaudRate}" Margin="0">
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger EventName="SelectionChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding ChooseBaudRateCommand}"/>
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                </ComboBox>
+                <Button Content="Connect" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="21" Command="{Binding ConnectPortCommand}">
+                </Button>
+            </ToolBar>
+            <ToolBar HorizontalAlignment="Left" Margin="0.123,0,-163.892,0.062" Width="245">
+                <Button Content="Send OK" HorizontalAlignment="Left" VerticalAlignment="Top" Width="57" Height="20" Command="{Binding SendOkCommand}" />
+            </ToolBar>
+        </ToolBarTray>
+
+
 
     </Grid>
 </Window>

@@ -4,10 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VirtualMarlinFirmware
+namespace VirtualRepRapFirmware.VirtualFirmware
 {
-    public class M503
+    public class Temperature
     {
+
+        public Temperature()
+        {
+
+        }
+
 
     }
 }
